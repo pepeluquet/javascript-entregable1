@@ -47,7 +47,7 @@ while (continuar) {
         alert("Tienes un indice de masa corporal OBESIDAD")
     };
     
-    alumnos.push = ({
+    alumnos.push({
         nombre, apellido, edad, peso, altura, resultado,
     });
 
