@@ -21,7 +21,7 @@ while (continuar) {
     let nombre = prompt("Ingrese su nombre: ");
     let apellido = prompt("Ingrese su apellido: ");
     saludo(nombre, apellido)
-    let sexo = prompt("Indique su sexo segun del dni (f/m): ")
+    let sexo = prompt("Indique su sexo segun del dni (m/f): ")
     let edad = parseInt(prompt("Ingrese su edad: "));
     let peso = parseInt(prompt ("Ingrese su peso: "));
     let altura = parseInt(prompt("Ingrese su altura (en centimetros): "));
