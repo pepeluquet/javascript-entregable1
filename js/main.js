@@ -1,6 +1,23 @@
 console.log ("Bienvenido a carga de Alumnos")
 const alumnos = [];
 
+class Alumno {
+    static id = 0
+    constructor (nombre, apellido, sexo, edad, peso, altura, cintura, cadera, resultadoImc, resultadoIcc) {
+        this.id = ++Alumno.id,
+        this.nombre = nombre
+        this.apellido = apellido
+        this.sexo = sexo
+        this.edad = edad
+        this.peso = peso
+        this.altura =  altura
+        this.cintura = cintura
+        this.cadera = cadera
+        this.resultadoImc = resultadoImc 
+        this.resultadoIcc = resultadoImc
+    }
+}
+
 // La fórmula para calcular el índice de masa corporal (IMC) es IMC = peso (kg) / estatura (m)*2
 function imc(peso , altura){
     return peso / ((altura/100) ** 2);
@@ -13,7 +30,7 @@ function icc(cintura , cadera){
 
 // cargarDatosUsuarios() que se encargue de pedir los prompts con los datos del usuario
 
-function cargarDatosUsuarios(){
+const cargarDatosUsuarios = () =>{
     let nombre = prompt("Ingrese su nombre: ");
     let apellido = prompt("Ingrese su apellido: ");
     let sexo = prompt("Indique su sexo segun del dni (m/f): ")
@@ -32,7 +49,7 @@ function cargarDatosUsuarios(){
 // Sobrepeso: 25.0 – 29.9
 // Obesidad : mas de 30.0 
 
-function informarIMC(resultadoImc) {
+const informarIMC = (resultadoImc) => {
     console.log ("Tu Indice de Masa Corporal es: "+ resultadoImc);
     if (resultadoImc < 18.5) {
         alert("Tienes un indice de masa corporal BAJO");
@@ -52,7 +69,7 @@ function informarIMC(resultadoImc) {
 // Riesgo moderado	    0.9 – 1.0	    0.85 – 0.9
 // Alto riesgo	        > 1.0	        > 0.9
 
-function informarICC(sexo, resultadoIcc){
+const informarICC = (sexo, resultadoIcc) => {
     console.log ("Tu Indice Cintura-Cadera es: "+ resultadoIcc);
     if (sexo == "m"){
         if (resultadoIcc < 0.89) {
@@ -91,7 +108,7 @@ while (continuar) {
     informarICC(sexo, resultadoIcc)
 
     alumnos.push({
-        nombre, apellido, edad, peso, altura, resultadoImc, resultadoIcc,
+        nombre, apellido, sexo, edad, peso, altura, cintura, cadera, resultadoImc, resultadoIcc,
     });
 
     let confirmacion = prompt("Desea hacer otra carga? (si/no)")
