@@ -1,5 +1,4 @@
 console.log ("Bienvenido a carga de Alumnos")
-
 const alumnos = [];
 
 // La fórmula para calcular el índice de masa corporal (IMC) es IMC = peso (kg) / estatura (m)*2
@@ -12,31 +11,29 @@ function icc(cintura , cadera){
     return cintura / cadera;
 };
 
-function saludo(nombre, apellido) {
-    alert("Bienvenido "+ nombre + " " + apellido);
-};
+// cargarDatosUsuarios() que se encargue de pedir los prompts con los datos del usuario
 
-let continuar = true
-while (continuar) {
+function cargarDatosUsuarios(){
     let nombre = prompt("Ingrese su nombre: ");
     let apellido = prompt("Ingrese su apellido: ");
-    saludo(nombre, apellido)
     let sexo = prompt("Indique su sexo segun del dni (m/f): ")
     let edad = parseInt(prompt("Ingrese su edad: "));
     let peso = parseInt(prompt ("Ingrese su peso: "));
     let altura = parseInt(prompt("Ingrese su altura (en centimetros): "));
+    return {nombre, apellido, sexo, edad, peso, altura};
+}
 
-    imc(peso , altura);
-    let resultadoImc = imc(peso, altura);
-        // Interpretación de los resultados
-        // El IMC es una manera estándar de determinar si una persona tiene un peso adecuado en relación a su estatura. 
-        // Los rangos de IMC son: 
-        // Bajo: menos de 18.5
-        // Normal: 18.5 – 24.9
-        // Sobrepeso: 25.0 – 29.9
-        // Obesidad : mas de 30.0     
+// funsion que se encarga de dar los resultados IMC
+// Interpretación de los resultados
+// El IMC es una manera estándar de determinar si una persona tiene un peso adecuado en relación a su estatura. 
+// Los rangos de IMC son: 
+// Bajo: menos de 18.5
+// Normal: 18.5 – 24.9
+// Sobrepeso: 25.0 – 29.9
+// Obesidad : mas de 30.0 
+
+function informarIMC(resultadoImc) {
     console.log ("Tu Indice de Masa Corporal es: "+ resultadoImc);
-
     if (resultadoImc < 18.5) {
         alert("Tienes un indice de masa corporal BAJO");
     } else if (18.6 < resultadoImc < 24.9) {
@@ -46,19 +43,17 @@ while (continuar) {
     } else {
         alert("Tienes un indice de masa corporal OBESIDAD")
     };
+    return resultadoImc
+}
 
-    let cintura = parseInt(prompt("Ingrese la medida de la cintura (en centimetros): "))
-    let cadera = parseInt(prompt("Ingrese la medida de la cadera (en centimetros): "))
-    
-    icc(cintura, cadera);
-    let resultadoIcc = icc(cintura, cadera);
-    
-        // Clasificación	    Hombres (ICC)	Mujeres (ICC)
-        // Bajo riesgo	        < 0.9	        < 0.85
-        // Riesgo moderado	    0.9 – 1.0	    0.85 – 0.9
-        // Alto riesgo	        > 1.0	        > 0.9
+// funsion que según el sexo que se ingresa, muestra los resultados de ICC
+// Clasificación	    Hombres (ICC)	Mujeres (ICC)
+// Bajo riesgo	        < 0.9	        < 0.85
+// Riesgo moderado	    0.9 – 1.0	    0.85 – 0.9
+// Alto riesgo	        > 1.0	        > 0.9
+
+function informarICC(sexo, resultadoIcc){
     console.log ("Tu Indice Cintura-Cadera es: "+ resultadoIcc);
-
     if (sexo == "m"){
         if (resultadoIcc < 0.89) {
             alert("Tienes un indice cintura/cadera de BAJO RIESGO");
@@ -77,7 +72,23 @@ while (continuar) {
         };
     } else {
         alert("El dato del sexo era necesario para el resultado del ICC")
-    }
+    };
+    return resultadoIcc
+}
+
+let continuar = true
+while (continuar) {
+
+    // cargarDatosUsuarios()
+    const { nombre, apellido, sexo, edad, peso, altura } = cargarDatosUsuarios();
+
+    const resultadoImc = imc(peso, altura);
+    informarIMC(resultadoImc)
+
+    let cintura = parseInt(prompt("Ingrese la medida de la cintura (en centimetros): "))
+    let cadera = parseInt(prompt("Ingrese la medida de la cadera (en centimetros): "))
+    const resultadoIcc = icc(cintura, cadera);
+    informarICC(sexo, resultadoIcc)
 
     alumnos.push({
         nombre, apellido, edad, peso, altura, resultadoImc, resultadoIcc,
