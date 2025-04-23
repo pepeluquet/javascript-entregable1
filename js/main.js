@@ -24,6 +24,11 @@ const cargarDatosUsuarios = () =>{
     
     const alumno = new Alumno (nombre, apellido, sexo, edad, peso, altura)
     alumnos.push(alumno)
+
+    const alumnosJSON = JSON.stringify(alumnos)
+    localStorage.setItem("alumnos", alumnosJSON)
+    const alumnosNuevo = JSON.parse(localStorage.getItem("alumnos"))
+    console.log(alumnosNuevo)
 }
 
 function informarIMC (resultadoImc) {
@@ -100,3 +105,4 @@ while(menu !==5) {
     menu = parseInt(prompt("Ingrese: \n1 para ver alumno \n2 para cargar alumno \n3 calcular el Indice Masa Corporal \n4 calcular el Indice Cintura Cadera \n5 para salir:"))
 }
 console.log(alumnos)
+// localStorage.clear()
