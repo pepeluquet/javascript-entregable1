@@ -31,6 +31,16 @@ const cargarDatosUsuarios = () =>{
     console.log(alumnosNuevo)
 }
 
+const buscarAlumnos = () => {
+    if (alumnos.length === 0) {
+        alert("No hay alumnos agregados")
+    } else {
+        let apellidoAlumno = prompt("Ingrese el apellido a buscar: ")
+        const busqueda = alumnos.filter (alumno => alumno.apellido == apellidoAlumno)
+        console.log(busqueda)
+    }
+}
+
 function informarIMC (resultadoImc) {
     if (resultadoImc < 18.5) {
         alert("Tienes un indice de masa corporal BAJO");
@@ -67,14 +77,15 @@ function informarICC (sexo, resultadoIcc) {
     };
 }
 
-let menu = parseInt(prompt("Ingrese: \n1 para ver alumno \n2 para cargar alumno \n3 calcular el Indice Masa Corporal \n4 calcular el Indice Cintura Cadera \n5 para salir:"))
+let menu = parseInt(prompt("Ingrese: \n1 para cargar alumno \n2 para ver alumno \n3 calcular el Indice Masa Corporal \n4 calcular el Indice Cintura Cadera \n5 para salir:"))
 
 while(menu !==5) {
     switch(menu) {
         case 1:
+            cargarDatosUsuarios()
             break
         case 2:
-            cargarDatosUsuarios()
+            buscarAlumnos()
             break
         case 3:
             let peso = parseInt(prompt ("Ingrese su peso: "))
@@ -102,7 +113,7 @@ while(menu !==5) {
         default:
             alert("Opcion invalidad")
     }
-    menu = parseInt(prompt("Ingrese: \n1 para ver alumno \n2 para cargar alumno \n3 calcular el Indice Masa Corporal \n4 calcular el Indice Cintura Cadera \n5 para salir:"))
+    menu = parseInt(prompt("Ingrese: \n1 para cargar alumno \n2 para ver alumno \n3 calcular el Indice Masa Corporal \n4 calcular el Indice Cintura Cadera \n5 para salir:"))
 }
-console.log(alumnos)
+// console.log(alumnos)
 // localStorage.clear()
